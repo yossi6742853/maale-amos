@@ -1,0 +1,20 @@
+{
+  "name": "\u05de\u05e2\u05dc\u05d4 \u05e2\u05de\u05d5\u05e1",
+  "short_name": "\u05de\u05e2\u05dc\u05d4 \u05e2\u05de\u05d5\u05e1",
+  "description": "\u05d0\u05ea\u05e8 \u05d4\u05d9\u05e9\u05d5\u05d1 \u05de\u05e2\u05dc\u05d4 \u05e2\u05de\u05d5\u05e1 \u2014 \u05ea\u05d5\u05e8\u05d4 \u00b7 \u05e7\u05d4\u05d9\u05dc\u05d4 \u00b7 \u05d9\u05e9\u05d5\u05d1 \u05d4\u05d3\u05e2\u05ea",
+  "start_url": "/maale-amos/",
+  "scope": "/maale-amos/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "dir": "rtl",
+  "lang": "he",
+  "background_color": "#fafaf7",
+  "theme_color": "#1a5c3a",
+  "icons": [
+    {
+      "src": "https://maaleamos.co.il/pictures/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

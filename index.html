@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>מעלה עמוס | תורה · קהילה · ישוב הדעת</title>
 <meta name="description" content="אתר הישוב מעלה עמוס - מידע קהילתי, חדשות, שירותים, דיור ועוד">
+<meta name="theme-color" content="#1a5c3a">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="https://maaleamos.co.il/pictures/favicon.svg" type="image/svg+xml">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -687,9 +690,114 @@ body {
   .float-btn { width: 48px; height: 48px; font-size: 1.2rem; }
   .admin-panel { width: 98%; }
 }
+
+/* ===== DARK MODE ===== */
+body.dark {
+  --bg: #1a1a2e; --sand: #16213e; --text: #e0e0e0; --text-light: #a0a0b0;
+  --sky: #1a2744; --card-shadow: 0 4px 20px rgba(0,0,0,0.3); --card-hover: 0 8px 32px rgba(0,0,0,0.5);
+}
+body.dark .navbar-main { background: rgba(26,26,46,0.95); }
+body.dark .news-card, body.dark .service-card, body.dark .event-item, body.dark .project-card,
+body.dark .edu-card, body.dark .gemach-card, body.dark .simcha-item, body.dark .market-card,
+body.dark .security-card, body.dark .resident-card, body.dark .residents-gate {
+  background: #16213e; color: #e0e0e0;
+}
+body.dark .dropdown-mega { background: #16213e; }
+body.dark .dropdown-mega a { color: #e0e0e0; }
+body.dark .section-header h2 { color: #e0e0e0; }
+body.dark .brand-text .title { color: #e0e0e0; }
+body.dark .admin-panel { background: #1a1a2e; }
+body.dark .admin-panel .admin-body { color: #e0e0e0; }
+body.dark .admin-item-list li { background: #16213e; color: #e0e0e0; }
+body.dark .admin-form-group input, body.dark .admin-form-group textarea, body.dark .admin-form-group select {
+  background: #0f3460; border-color: #1a3a6a; color: #e0e0e0;
+}
+body.dark .tab-btn { background: #16213e; color: #a0a0b0; border-color: #2d5a8e; }
+
+/* Dark mode toggle */
+.dark-toggle {
+  position: fixed; top: 36px; left: 16px; z-index: 1055;
+  width: 40px; height: 40px; border-radius: 50%; border: none;
+  background: var(--sand); color: var(--text); font-size: 1.1rem;
+  cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.15); transition: var(--transition);
+}
+.dark-toggle:hover { transform: scale(1.1); }
+
+/* ===== ACCESSIBILITY WIDGET ===== */
+.a11y-widget {
+  position: fixed; top: 82px; left: 16px; z-index: 1055;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.a11y-btn {
+  width: 36px; height: 36px; border-radius: 50%; border: 1px solid #ccc;
+  background: #fff; color: var(--text); font-size: 0.85rem; font-weight: 800;
+  cursor: pointer; transition: var(--transition); font-family: 'Heebo';
+}
+body.dark .a11y-btn { background: #16213e; border-color: #333; color: #e0e0e0; }
+body.font-lg { font-size: 18px; }
+body.font-xl { font-size: 20px; }
+
+/* ===== WHATSAPP SHARE ===== */
+.wa-share {
+  display: inline-flex; align-items: center; gap: 4px; color: #25d366;
+  font-size: 0.8rem; cursor: pointer; margin-top: 8px; font-weight: 600;
+  transition: var(--transition);
+}
+.wa-share:hover { color: #128c7e; }
+
+/* ===== BUS SCHEDULE ===== */
+.bus-table { width: 100%; border-collapse: collapse; }
+.bus-table th {
+  background: var(--primary); color: #fff; padding: 10px 14px;
+  font-weight: 600; font-size: 0.9rem; text-align: right;
+}
+.bus-table td { padding: 10px 14px; border-bottom: 1px solid #e0e0e0; font-size: 0.88rem; }
+.bus-table tr:hover { background: var(--sky); }
+body.dark .bus-table td { border-color: #333; }
+body.dark .bus-table tr:hover { background: #1a2744; }
+
+/* ===== SHELTER MAP ===== */
+.shelter-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
+.shelter-card {
+  background: #fff; border-radius: var(--radius); padding: 20px;
+  box-shadow: var(--card-shadow); border-right: 4px solid var(--danger);
+  transition: var(--transition);
+}
+body.dark .shelter-card { background: #16213e; }
+.shelter-card:hover { box-shadow: var(--card-hover); }
+.shelter-card h4 { font-weight: 700; color: var(--danger); margin-bottom: 4px; }
+.shelter-card p { font-size: 0.85rem; color: var(--text-light); margin: 0; }
+
+/* ===== INQUIRY TRACKER ===== */
+.inquiry-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+.inquiry-table th { background: var(--primary); color: #fff; padding: 10px; font-size: 0.85rem; text-align: right; }
+.inquiry-table td { padding: 10px; border-bottom: 1px solid #e0e0e0; font-size: 0.85rem; }
+body.dark .inquiry-table td { border-color: #333; }
+.status-badge {
+  padding: 3px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;
+}
+.status-open { background: #fff3cd; color: #856404; }
+.status-progress { background: #cce5ff; color: #004085; }
+.status-closed { background: #d4edda; color: #155724; }
+
+/* ===== IMAGE UPLOAD IN CMS ===== */
+.img-upload-area {
+  border: 2px dashed #ccc; border-radius: 12px; padding: 20px;
+  text-align: center; cursor: pointer; transition: var(--transition); margin-bottom: 12px;
+}
+.img-upload-area:hover { border-color: var(--primary); background: var(--sky); }
+.img-upload-area input[type=file] { display: none; }
+.img-preview { max-width: 200px; max-height: 120px; border-radius: 8px; margin-top: 8px; }
 </style>
 </head>
 <body>
+
+<!-- ===== DARK MODE + A11Y ===== -->
+<button class="dark-toggle" onclick="toggleDark()" title="מצב לילה"><i class="bi bi-moon-fill"></i></button>
+<div class="a11y-widget">
+  <button class="a11y-btn" onclick="changeFontSize(1)" title="הגדל טקסט">A+</button>
+  <button class="a11y-btn" onclick="changeFontSize(-1)" title="הקטן טקסט">A-</button>
+</div>
 
 <!-- ===== NEWS TICKER ===== -->
 <div class="news-ticker">
@@ -1043,6 +1151,52 @@ body {
   </div>
 </section>
 
+<!-- ===== BUS SCHEDULE ===== -->
+<section class="section" id="buses">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2><i class="bi bi-bus-front"></i> לוח זמני אוטובוסים</h2>
+      <div class="section-line"></div>
+      <p>קווים עוברים במעלה עמוס</p>
+    </div>
+    <div class="fade-up" style="max-width:800px;margin:0 auto;background:#fff;border-radius:var(--radius);box-shadow:var(--card-shadow);overflow:hidden">
+      <table class="bus-table">
+        <thead><tr><th>קו</th><th>מסלול</th><th>ראשון</th><th>אחרון</th><th>תדירות</th></tr></thead>
+        <tbody>
+          <tr><td><strong>166</strong></td><td>מעלה עמוס - ירושלים</td><td>06:15</td><td>22:30</td><td>כל 30 דק'</td></tr>
+          <tr><td><strong>167</strong></td><td>מעלה עמוס - ירושלים (מהיר)</td><td>07:00</td><td>21:00</td><td>כל 45 דק'</td></tr>
+          <tr><td><strong>364</strong></td><td>מעלה עמוס - קרית ארבע</td><td>06:30</td><td>20:00</td><td>כל שעה</td></tr>
+          <tr><td><strong>368</strong></td><td>מעלה עמוס - באר שבע</td><td>07:30</td><td>18:00</td><td>3 ביום</td></tr>
+          <tr><td><strong>פנימי</strong></td><td>שכונות - מרכז הישוב</td><td>07:00</td><td>14:00</td><td>ימי חול</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-center mt-3 fade-up" style="font-size:0.8rem;color:var(--text-light)"><i class="bi bi-info-circle"></i> זמנים להמחשה. בדקו באפליקציית מוביט לזמנים מדויקים. בשבת ומועדים אין שירות.</p>
+  </div>
+</section>
+
+<!-- ===== EMERGENCY INFO ===== -->
+<section class="section" id="emergency">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2><i class="bi bi-exclamation-octagon"></i> מידע חירום ומקלטים</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="shelter-grid fade-up">
+      <div class="shelter-card"><h4><i class="bi bi-geo-alt-fill"></i> מקלט מרכזי</h4><p>ליד בית הכנסת המרכזי. קיבולת: 200 איש. נגיש לנכים.</p></div>
+      <div class="shelter-card"><h4><i class="bi bi-geo-alt-fill"></i> מקלט שכונה צפונית</h4><p>רחוב הגפן 12. קיבולת: 80 איש.</p></div>
+      <div class="shelter-card"><h4><i class="bi bi-geo-alt-fill"></i> מקלט בית הספר</h4><p>מתחם בית הספר היסודי. קיבולת: 150 איש.</p></div>
+      <div class="shelter-card"><h4><i class="bi bi-geo-alt-fill"></i> מקלט שכונה דרומית</h4><p>רחוב הזית 5. קיבולת: 80 איש.</p></div>
+      <div class="shelter-card"><h4><i class="bi bi-geo-alt-fill"></i> ממ"ד מרכז קהילתי</h4><p>מבנה המרכז הקהילתי. קיבולת: 60 איש.</p></div>
+      <div class="shelter-card"><h4><i class="bi bi-geo-alt-fill"></i> נקודת כינוס</h4><p>מגרש הספורט המרכזי. לאחר אירוע.</p></div>
+    </div>
+    <div class="fade-up" style="margin-top:24px;background:#fff3cd;border-radius:var(--radius);padding:20px;text-align:center">
+      <h4 style="color:#856404"><i class="bi bi-exclamation-triangle-fill"></i> בזמן אזעקה</h4>
+      <p style="color:#856404;margin:0">היכנסו למרחב מוגן תוך 30 שניות. הישארו 10 דקות לאחר סיום האזעקה.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ===== CONTACT ===== -->
 <section class="section contact-section" id="contact">
   <div class="container">
@@ -1051,19 +1205,23 @@ body {
       <div class="section-line"></div>
       <p>שלחו פנייה למזכירות הישוב ונחזור אליכם בהקדם</p>
     </div>
-    <form class="contact-form fade-up" onsubmit="submitContact(event)">
+    <form class="contact-form fade-up" action="https://formsubmit.co/6742853@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="פנייה חדשה מאתר מעלה עמוס">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://yossi6742853.github.io/maale-amos/#contact">
+      <input type="hidden" name="_template" value="table">
       <div class="row g-3">
-        <div class="col-md-6"><label class="form-label">שם מלא</label><input type="text" class="form-control" placeholder="ישראל ישראלי" required></div>
-        <div class="col-md-6"><label class="form-label">טלפון</label><input type="tel" class="form-control" placeholder="050-1234567" required></div>
-        <div class="col-12"><label class="form-label">דוא"ל</label><input type="email" class="form-control" placeholder="email@example.com"></div>
+        <div class="col-md-6"><label class="form-label">שם מלא</label><input type="text" name="name" class="form-control" placeholder="ישראל ישראלי" required></div>
+        <div class="col-md-6"><label class="form-label">טלפון</label><input type="tel" name="phone" class="form-control" placeholder="050-1234567" required></div>
+        <div class="col-12"><label class="form-label">דוא"ל</label><input type="email" name="email" class="form-control" placeholder="email@example.com"></div>
         <div class="col-12"><label class="form-label">נושא</label>
-          <select class="form-select" required>
+          <select name="subject" class="form-select" required>
             <option value="">בחרו נושא...</option>
             <option>תחזוקה ותשתיות</option><option>דיור ובנייה</option><option>ביטחון</option>
             <option>חינוך</option><option>קהילה</option><option>גבייה</option><option>אחר</option>
           </select>
         </div>
-        <div class="col-12"><label class="form-label">תוכן הפנייה</label><textarea class="form-control" rows="5" placeholder="פרטו את פנייתכם..." required></textarea></div>
+        <div class="col-12"><label class="form-label">תוכן הפנייה</label><textarea name="message" class="form-control" rows="5" placeholder="פרטו את פנייתכם..." required></textarea></div>
         <div class="col-12"><button type="submit" class="btn-submit"><i class="bi bi-send"></i> שליחת פנייה</button></div>
       </div>
     </form>
@@ -1104,12 +1262,69 @@ body {
         <button class="btn-logout" onclick="residentLogout()"><i class="bi bi-box-arrow-right"></i> יציאה</button>
       </div>
       <div class="resident-cards">
-        <div class="resident-card" onclick="showToast('בקרוב \u2014 מערכת גבייה')"><i class="bi bi-credit-card"></i><h4>גבייה ותשלומים</h4></div>
-        <div class="resident-card" onclick="showToast('בקרוב \u2014 פניות אישיות')"><i class="bi bi-envelope-paper"></i><h4>הפניות שלי</h4></div>
-        <div class="resident-card" onclick="showToast('בקרוב \u2014 מסמכים')"><i class="bi bi-file-earmark-text"></i><h4>מסמכים</h4></div>
-        <div class="resident-card" onclick="showToast('בקרוב \u2014 עדכון פרטים')"><i class="bi bi-person-gear"></i><h4>עדכון פרטים</h4></div>
-        <div class="resident-card" onclick="showToast('בקרוב \u2014 הודעות')"><i class="bi bi-bell"></i><h4>הודעות</h4></div>
-        <div class="resident-card" onclick="showToast('בקרוב \u2014 ארנונה')"><i class="bi bi-house-check"></i><h4>ארנונה</h4></div>
+        <div class="resident-card" onclick="showResidentSection('inquiries')"><i class="bi bi-envelope-paper"></i><h4>הפניות שלי</h4></div>
+        <div class="resident-card" onclick="showResidentSection('new-inquiry')"><i class="bi bi-plus-circle"></i><h4>פנייה חדשה</h4></div>
+        <div class="resident-card" onclick="showResidentSection('payments')"><i class="bi bi-credit-card"></i><h4>גבייה ותשלומים</h4></div>
+        <div class="resident-card" onclick="showResidentSection('documents')"><i class="bi bi-file-earmark-text"></i><h4>מסמכים</h4></div>
+        <div class="resident-card" onclick="showResidentSection('notifications')"><i class="bi bi-bell"></i><h4>הודעות</h4></div>
+        <div class="resident-card" onclick="showResidentSection('profile')"><i class="bi bi-person-gear"></i><h4>עדכון פרטים</h4></div>
+      </div>
+      <!-- Inquiries Section -->
+      <div id="residentInquiries" style="display:none;margin-top:24px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+          <h4 style="font-weight:800;margin:0"><i class="bi bi-envelope-paper"></i> הפניות שלי</h4>
+          <button class="btn-admin btn-admin-primary" onclick="showResidentSection('new-inquiry')"><i class="bi bi-plus"></i> פנייה חדשה</button>
+        </div>
+        <table class="inquiry-table" id="inquiryTable">
+          <thead><tr><th>#</th><th>נושא</th><th>תאריך</th><th>סטטוס</th></tr></thead>
+          <tbody id="inquiryBody"></tbody>
+        </table>
+        <p id="noInquiries" style="text-align:center;color:var(--text-light);padding:20px;display:none">אין פניות. לחצו "פנייה חדשה" לפתיחת פנייה.</p>
+      </div>
+      <!-- New Inquiry Form -->
+      <div id="residentNewInquiry" style="display:none;margin-top:24px;max-width:600px;margin-left:auto;margin-right:auto">
+        <h4 style="font-weight:800;margin-bottom:16px"><i class="bi bi-plus-circle"></i> פנייה חדשה</h4>
+        <div class="admin-form-group"><label>נושא</label>
+          <select id="inqSubject"><option>תחזוקה</option><option>דיור</option><option>ביטחון</option><option>חינוך</option><option>גבייה</option><option>אחר</option></select>
+        </div>
+        <div class="admin-form-group"><label>תיאור הפנייה</label><textarea id="inqMessage" rows="4" placeholder="פרטו את פנייתכם..."></textarea></div>
+        <div class="admin-form-group">
+          <label>צרפו תמונה (אופציונלי)</label>
+          <div class="img-upload-area" onclick="document.getElementById('inqFileInput').click()">
+            <i class="bi bi-cloud-arrow-up" style="font-size:2rem;color:var(--primary)"></i>
+            <p style="margin:4px 0 0;font-size:0.85rem;color:var(--text-light)">לחצו לבחירת תמונה</p>
+            <input type="file" id="inqFileInput" accept="image/*" onchange="previewInqImage(this)">
+            <img id="inqImgPreview" class="img-preview" style="display:none">
+          </div>
+        </div>
+        <button class="btn-admin btn-admin-primary" style="width:100%" onclick="submitInquiry()"><i class="bi bi-send"></i> שלח פנייה</button>
+        <button class="btn-admin" style="width:100%;margin-top:8px;background:#e0e0e0" onclick="showResidentSection('inquiries')">חזרה לפניות</button>
+      </div>
+      <!-- Payments -->
+      <div id="residentPayments" style="display:none;margin-top:24px;text-align:center;padding:40px">
+        <i class="bi bi-credit-card" style="font-size:3rem;color:var(--primary)"></i>
+        <h4 style="margin:12px 0 8px;font-weight:700">גבייה ותשלומים</h4>
+        <p style="color:var(--text-light)">יתרת חוב: <strong style="color:var(--primary);font-size:1.3rem">0 \u20aa</strong></p>
+        <p style="color:var(--text-light);font-size:0.85rem">אין חיובים פתוחים. התשלום הבא: 01/06/2026</p>
+      </div>
+      <!-- Documents -->
+      <div id="residentDocuments" style="display:none;margin-top:24px;text-align:center;padding:40px">
+        <i class="bi bi-folder2-open" style="font-size:3rem;color:var(--primary)"></i>
+        <h4 style="margin:12px 0 8px;font-weight:700">מסמכים</h4>
+        <p style="color:var(--text-light)">אין מסמכים זמינים כעת</p>
+      </div>
+      <!-- Notifications -->
+      <div id="residentNotifications" style="display:none;margin-top:24px">
+        <h4 style="font-weight:800;margin-bottom:16px"><i class="bi bi-bell"></i> הודעות</h4>
+        <div id="notifList"></div>
+      </div>
+      <!-- Profile -->
+      <div id="residentProfile" style="display:none;margin-top:24px;max-width:500px;margin-left:auto;margin-right:auto">
+        <h4 style="font-weight:800;margin-bottom:16px"><i class="bi bi-person-gear"></i> עדכון פרטים</h4>
+        <div class="admin-form-group"><label>שם</label><input id="profileName"></div>
+        <div class="admin-form-group"><label>טלפון</label><input id="profilePhone"></div>
+        <div class="admin-form-group"><label>כתובת</label><input id="profileAddr"></div>
+        <button class="btn-admin btn-admin-primary" style="width:100%" onclick="saveProfile()"><i class="bi bi-save"></i> שמור</button>
       </div>
     </div>
   </div>
@@ -1195,7 +1410,14 @@ body {
           <div class="admin-form-group"><label>כותרת</label><input id="newsTitle" placeholder="כותרת החדשה"></div>
           <div class="admin-form-group"><label>תיאור</label><textarea id="newsDesc" rows="3" placeholder="תיאור קצר"></textarea></div>
           <div class="admin-form-group"><label>קטגוריה</label><input id="newsCat" placeholder="דיור / קהילה / חינוך..."></div>
-          <div class="admin-form-group"><label>קישור תמונה</label><input id="newsImg" placeholder="https://..."></div>
+          <div class="admin-form-group"><label>תמונה (קישור או העלאה)</label><input id="newsImg" placeholder="https://...">
+            <div class="img-upload-area" onclick="document.getElementById('newsFileInput').click()" style="margin-top:8px">
+              <i class="bi bi-cloud-arrow-up" style="font-size:1.5rem;color:var(--primary)"></i>
+              <p style="margin:2px 0 0;font-size:0.8rem">או לחצו להעלות תמונה</p>
+              <input type="file" id="newsFileInput" accept="image/*" onchange="handleCmsImageUpload(this,'newsImgPreview');document.getElementById('newsImg').value='uploaded'">
+              <img id="newsImgPreview" class="img-preview" style="display:none">
+            </div>
+          </div>
           <button class="btn-admin btn-admin-primary" onclick="addNews()"><i class="bi bi-plus-circle"></i> הוסף חדשה</button>
           <hr style="margin:20px 0"><h5>חדשות קיימות:</h5>
           <ul class="admin-item-list" id="adminNewsList"></ul>
@@ -1357,9 +1579,9 @@ function getAdminCode() { return localStorage.getItem(ADMIN_CODE_KEY) || DEFAULT
 
 // ===== RENDER =====
 function renderNews() {
-  document.getElementById('newsGrid').innerHTML = newsData.map(n =>
-    '<div class="news-card"><div class="news-card-img" style="background-image:url(\'' + n.img + '\')"><span class="badge-cat">' + n.cat + '</span></div><div class="news-card-body"><div class="date"><i class="bi bi-calendar3"></i> ' + n.date + '</div><h3>' + n.title + '</h3><p>' + n.desc + '</p></div></div>'
-  ).join('');
+  document.getElementById('newsGrid').innerHTML = newsData.map(function(n) {
+    return '<div class="news-card"><div class="news-card-img" style="background-image:url(\'' + n.img + '\')"><span class="badge-cat">' + n.cat + '</span></div><div class="news-card-body"><div class="date"><i class="bi bi-calendar3"></i> ' + n.date + '</div><h3>' + n.title + '</h3><p>' + n.desc + '</p><span class="wa-share" onclick="shareWA(\'' + encodeURIComponent(n.title) + '\')"><i class="bi bi-whatsapp"></i> שתף בוואטסאפ</span></div></div>';
+  }).join('');
 }
 
 function renderEvents() {
@@ -1557,7 +1779,11 @@ function addNews() {
   var t = document.getElementById('newsTitle').value, d = document.getElementById('newsDesc').value;
   if (!t) { showToast('\u05d4\u05d6\u05d9\u05e0\u05d5 \u05db\u05d5\u05ea\u05e8\u05ea'); return; }
   var now = new Date();
-  newsData.unshift({ title: t, desc: d, date: now.getDate() + '/' + (now.getMonth()+1) + '/' + now.getFullYear(), cat: document.getElementById('newsCat').value || '\u05e2\u05d3\u05db\u05d5\u05e0\u05d9\u05dd', img: document.getElementById('newsImg').value || 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80' });
+  var imgUrl = document.getElementById('newsImg').value;
+  var fileInput = document.getElementById('newsFileInput');
+  if (imgUrl === 'uploaded' && fileInput.dataset.dataUrl) imgUrl = fileInput.dataset.dataUrl;
+  if (!imgUrl) imgUrl = 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80';
+  newsData.unshift({ title: t, desc: d, date: now.getDate() + '/' + (now.getMonth()+1) + '/' + now.getFullYear(), cat: document.getElementById('newsCat').value || '\u05e2\u05d3\u05db\u05d5\u05e0\u05d9\u05dd', img: imgUrl });
   setData('news', newsData); refreshAdminLists(); renderAll();
   document.getElementById('newsTitle').value = ''; document.getElementById('newsDesc').value = '';
   showToast('\u05d7\u05d3\u05e9\u05d4 \u05e0\u05d5\u05e1\u05e4\u05d4!');
@@ -1686,6 +1912,155 @@ document.querySelectorAll('[data-target]').forEach(function(el) { counterObserve
 
 // Close admin on escape
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeAdmin(); });
+
+// ===== DARK MODE =====
+function toggleDark() {
+  document.body.classList.toggle('dark');
+  var icon = document.querySelector('.dark-toggle i');
+  if (document.body.classList.contains('dark')) {
+    icon.className = 'bi bi-sun-fill';
+    localStorage.setItem('ma_dark', '1');
+  } else {
+    icon.className = 'bi bi-moon-fill';
+    localStorage.removeItem('ma_dark');
+  }
+}
+if (localStorage.getItem('ma_dark') === '1') {
+  document.body.classList.add('dark');
+  document.querySelector('.dark-toggle i').className = 'bi bi-sun-fill';
+}
+
+// ===== ACCESSIBILITY =====
+var fontLevel = 0;
+function changeFontSize(dir) {
+  fontLevel += dir;
+  if (fontLevel < 0) fontLevel = 0;
+  if (fontLevel > 2) fontLevel = 2;
+  document.body.classList.remove('font-lg', 'font-xl');
+  if (fontLevel === 1) document.body.classList.add('font-lg');
+  if (fontLevel === 2) document.body.classList.add('font-xl');
+}
+
+// ===== WHATSAPP SHARE =====
+function shareWA(text) {
+  window.open('https://wa.me/?text=' + text + '%20-%20' + encodeURIComponent(location.href), '_blank');
+}
+
+// ===== RESIDENT SECTIONS =====
+function showResidentSection(section) {
+  var sections = ['Inquiries','NewInquiry','Payments','Documents','Notifications','Profile'];
+  sections.forEach(function(s) {
+    var el = document.getElementById('resident' + s);
+    if (el) el.style.display = 'none';
+  });
+  var map = {
+    'inquiries': 'Inquiries', 'new-inquiry': 'NewInquiry', 'payments': 'Payments',
+    'documents': 'Documents', 'notifications': 'Notifications', 'profile': 'Profile'
+  };
+  var target = document.getElementById('resident' + map[section]);
+  if (target) target.style.display = 'block';
+  if (section === 'inquiries') renderInquiries();
+  if (section === 'notifications') renderNotifications();
+  if (section === 'profile') loadProfile();
+}
+
+// ===== INQUIRY SYSTEM =====
+function getInquiries() { return getData('inquiries', []); }
+function renderInquiries() {
+  var inquiries = getInquiries();
+  var tbody = document.getElementById('inquiryBody');
+  var noMsg = document.getElementById('noInquiries');
+  if (inquiries.length === 0) { tbody.innerHTML = ''; noMsg.style.display = 'block'; return; }
+  noMsg.style.display = 'none';
+  var statusLabels = { open: '\u05e4\u05ea\u05d5\u05d7', progress: '\u05d1\u05d8\u05d9\u05e4\u05d5\u05dc', closed: '\u05e0\u05e1\u05d2\u05e8' };
+  tbody.innerHTML = inquiries.map(function(inq, i) {
+    return '<tr><td>' + (i+1) + '</td><td>' + inq.subject + '<br><small style="color:var(--text-light)">' + (inq.message||'').substring(0,50) + '</small></td><td>' + inq.date + '</td><td><span class="status-badge status-' + inq.status + '">' + statusLabels[inq.status] + '</span></td></tr>';
+  }).join('');
+}
+
+function previewInqImage(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var img = document.getElementById('inqImgPreview');
+      img.src = e.target.result; img.style.display = 'block';
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function submitInquiry() {
+  var subject = document.getElementById('inqSubject').value;
+  var message = document.getElementById('inqMessage').value;
+  if (!message) { showToast('\u05e0\u05d0 \u05dc\u05de\u05dc\u05d0 \u05ea\u05d9\u05d0\u05d5\u05e8'); return; }
+  var inquiries = getInquiries();
+  var now = new Date();
+  var dateStr = now.getDate() + '/' + (now.getMonth()+1) + '/' + now.getFullYear();
+  var imgData = '';
+  var imgEl = document.getElementById('inqImgPreview');
+  if (imgEl && imgEl.src && imgEl.src.startsWith('data:')) imgData = imgEl.src;
+  inquiries.unshift({ subject: subject, message: message, date: dateStr, status: 'open', image: imgData });
+  setData('inquiries', inquiries);
+  // Also send via email
+  var user = sessionStorage.getItem('ma_user');
+  var userName = '';
+  if (user) { try { userName = JSON.parse(user).name; } catch(e) {} }
+  var mailBody = '\u05e4\u05e0\u05d9\u05d9\u05d4 \u05d7\u05d3\u05e9\u05d4 \u05de\u05d0\u05ea\u05e8 \u05de\u05e2\u05dc\u05d4 \u05e2\u05de\u05d5\u05e1%0A%0A\u05e9\u05dd: ' + encodeURIComponent(userName) + '%0A\u05e0\u05d5\u05e9\u05d0: ' + encodeURIComponent(subject) + '%0A\u05ea\u05d5\u05db\u05df: ' + encodeURIComponent(message);
+  // Open mailto as fallback notification
+  var mailLink = document.createElement('a');
+  mailLink.href = 'mailto:6742853@gmail.com?subject=' + encodeURIComponent('\u05e4\u05e0\u05d9\u05d9\u05d4 \u05de\u05ea\u05d5\u05e9\u05d1 - ' + subject) + '&body=' + mailBody;
+  mailLink.click();
+  document.getElementById('inqMessage').value = '';
+  if (imgEl) { imgEl.src = ''; imgEl.style.display = 'none'; }
+  showResidentSection('inquiries');
+  showToast('\u05d4\u05e4\u05e0\u05d9\u05d9\u05d4 \u05e0\u05e9\u05dc\u05d7\u05d4 \u05d1\u05d4\u05e6\u05dc\u05d7\u05d4!');
+}
+
+// ===== NOTIFICATIONS =====
+function renderNotifications() {
+  var notifs = [
+    { text: '\u05d4\u05e8\u05e9\u05de\u05d4 \u05dc\u05d2\u05e0\u05d9 \u05d9\u05dc\u05d3\u05d9\u05dd \u05ea\u05e9\u05e4"\u05d6 \u05e0\u05e4\u05ea\u05d7\u05d4', date: '24/04', icon: 'bi-megaphone' },
+    { text: '\u05ea\u05e9\u05dc\u05d5\u05dd \u05d0\u05e8\u05e0\u05d5\u05e0\u05d4 \u05dc\u05e8\u05d1\u05e2\u05d5\u05df 2 \u05d4\u05ea\u05e7\u05d1\u05dc', date: '20/04', icon: 'bi-receipt' },
+    { text: '\u05ea\u05d5\u05e8\u05e0\u05d5\u05ea \u05e9\u05de\u05d9\u05e8\u05d4 \u05de\u05d5\u05e2\u05e6\u05ea\u05d9\u05ea \u2014 \u05e2\u05d3\u05db\u05d5\u05df \u05d3\u05d5\u05e8 \u05d1\u05d9\u05d8\u05d7\u05d5\u05df', date: '18/04', icon: 'bi-shield-check' }
+  ];
+  document.getElementById('notifList').innerHTML = notifs.map(function(n) {
+    return '<div style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;margin-bottom:8px;box-shadow:var(--card-shadow)"><i class="bi ' + n.icon + '" style="font-size:1.3rem;color:var(--primary)"></i><div style="flex:1"><div style="font-weight:600;font-size:0.9rem">' + n.text + '</div></div><div style="font-size:0.78rem;color:var(--text-light)">' + n.date + '</div></div>';
+  }).join('');
+}
+
+// ===== PROFILE =====
+function loadProfile() {
+  var profile = getData('profile', {});
+  document.getElementById('profileName').value = profile.name || '';
+  document.getElementById('profilePhone').value = profile.phone || '';
+  document.getElementById('profileAddr').value = profile.addr || '';
+}
+function saveProfile() {
+  setData('profile', {
+    name: document.getElementById('profileName').value,
+    phone: document.getElementById('profilePhone').value,
+    addr: document.getElementById('profileAddr').value
+  });
+  showToast('\u05e4\u05e8\u05d8\u05d9\u05dd \u05e0\u05e9\u05de\u05e8\u05d5!');
+}
+
+// ===== CMS IMAGE UPLOAD =====
+function handleCmsImageUpload(input, previewId) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var img = document.getElementById(previewId);
+      if (img) { img.src = e.target.result; img.style.display = 'block'; }
+      input.dataset.dataUrl = e.target.result;
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+// ===== PWA =====
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(function() {});
+}
 
 // ===== INIT =====
 renderAll();
