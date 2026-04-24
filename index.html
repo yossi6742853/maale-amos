@@ -1,0 +1,1698 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מעלה עמוס | תורה · קהילה · ישוב הדעת</title>
+<meta name="description" content="אתר הישוב מעלה עמוס - מידע קהילתי, חדשות, שירותים, דיור ועוד">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1a5c3a;
+  --primary-light: #2d8a5e;
+  --primary-dark: #0f3d26;
+  --accent: #c8960c;
+  --accent-light: #f7c948;
+  --danger: #dc3545;
+  --sky: #e8f4f8;
+  --sand: #f5f0e6;
+  --bg: #fafaf7;
+  --text: #2c3e50;
+  --text-light: #6c757d;
+  --card-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --card-hover: 0 8px 32px rgba(0,0,0,0.14);
+  --radius: 16px;
+  --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Heebo', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--sand); }
+::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 8px; }
+
+/* ===== NAVBAR ===== */
+.navbar-main {
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1050;
+  transition: var(--transition);
+}
+.navbar-main.scrolled {
+  box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+}
+.navbar-brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+.logo-circle {
+  width: 48px; height: 48px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 800;
+  box-shadow: 0 2px 8px rgba(26,92,58,0.3);
+  flex-shrink: 0;
+}
+.logo-circle img {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.brand-text { line-height: 1.2; }
+.brand-text .title { font-weight: 800; font-size: 1.15rem; color: var(--primary-dark); }
+.brand-text .subtitle { font-size: 0.72rem; color: var(--text-light); font-weight: 400; letter-spacing: 1px; }
+
+.nav-menu { display: flex; gap: 0; list-style: none; margin: 0; padding: 0; }
+.nav-menu > li { position: relative; }
+.nav-menu > li > a {
+  display: block;
+  padding: 18px 16px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.92rem;
+  transition: var(--transition);
+  border-bottom: 3px solid transparent;
+}
+.nav-menu > li > a:hover,
+.nav-menu > li > a.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  background: rgba(26,92,58,0.04);
+}
+.nav-menu > li > a .bi { margin-inline-start: 4px; font-size: 0.7rem; }
+
+/* Dropdown */
+.dropdown-mega {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 280px;
+  background: #fff;
+  border-radius: 0 0 var(--radius) var(--radius);
+  box-shadow: var(--card-hover);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: var(--transition);
+  z-index: 1060;
+  padding: 8px 0;
+  border-top: 3px solid var(--primary);
+}
+.nav-menu > li:hover .dropdown-mega {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.dropdown-mega a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+.dropdown-mega a:hover {
+  background: var(--sky);
+  color: var(--primary);
+  padding-right: 26px;
+}
+.dropdown-mega a .bi { color: var(--primary-light); font-size: 1.1rem; width: 24px; text-align: center; }
+
+/* Mobile toggle */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--primary);
+  cursor: pointer;
+  padding: 8px;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 85vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: 68px;
+}
+.hero-slides {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+.hero-slide.active { opacity: 1; }
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(15,61,38,0.75) 0%, rgba(26,92,58,0.55) 50%, rgba(200,150,12,0.25) 100%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  padding: 2rem;
+  max-width: 800px;
+}
+.hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  line-height: 1.2;
+}
+.hero-content .tagline {
+  font-size: 1.3rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  opacity: 0.95;
+  letter-spacing: 2px;
+}
+.hero-search {
+  max-width: 500px;
+  margin: 0 auto 2rem;
+  position: relative;
+}
+.hero-search input {
+  width: 100%;
+  padding: 16px 24px 16px 50px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-family: 'Heebo', sans-serif;
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  outline: none;
+  transition: var(--transition);
+}
+.hero-search input:focus {
+  box-shadow: 0 4px 30px rgba(0,0,0,0.25);
+  background: #fff;
+}
+.hero-search .bi-search {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  font-size: 1.2rem;
+}
+.hero-quick-links {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.hero-quick-links a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+.hero-quick-links a:hover {
+  background: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
+}
+
+/* Scroll indicator */
+.scroll-down {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: #fff;
+  font-size: 1.5rem;
+  animation: bounce 2s infinite;
+  opacity: 0.7;
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+  40% { transform: translateX(-50%) translateY(-12px); }
+  60% { transform: translateX(-50%) translateY(-6px); }
+}
+
+/* ===== FLOATING WIDGETS ===== */
+.floating-widgets {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 1040;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.float-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: var(--transition);
+  position: relative;
+}
+.float-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+}
+.float-btn.emergency { background: var(--danger); }
+.float-btn.report { background: var(--accent); }
+.float-btn.phone { background: var(--primary); }
+.float-btn .tooltip-text {
+  position: absolute;
+  right: 68px;
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+}
+.float-btn:hover .tooltip-text {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  padding: 80px 0;
+}
+.section:nth-child(even) {
+  background: var(--sand);
+}
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.section-header h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin-bottom: 8px;
+}
+.section-header .section-line {
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  margin: 0 auto 16px;
+  border-radius: 2px;
+}
+.section-header p {
+  color: var(--text-light);
+  font-size: 1.05rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ===== NEWS FEED "מה קורה בישוב" ===== */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+}
+.news-card {
+  background: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+  cursor: pointer;
+}
+.news-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--card-hover);
+}
+.news-card-img {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.news-card-img .badge-cat {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: var(--primary);
+  color: #fff;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.news-card-body {
+  padding: 20px;
+}
+.news-card-body .date {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.news-card-body h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+.news-card-body p {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ===== SERVICES GRID ===== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+.service-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  text-align: center;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text);
+  border: 2px solid transparent;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-hover);
+  border-color: var(--primary-light);
+  color: var(--primary);
+}
+.service-card .icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  margin: 0 auto 14px;
+  transition: var(--transition);
+}
+.service-card:hover .icon { transform: scale(1.1); }
+.service-card h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.service-card p {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  margin: 0;
+}
+.icon-green { background: #e8f5e9; color: #2e7d32; }
+.icon-blue { background: #e3f2fd; color: #1565c0; }
+.icon-orange { background: #fff3e0; color: #e65100; }
+.icon-red { background: #fce4ec; color: #c62828; }
+.icon-purple { background: #f3e5f5; color: #6a1b9a; }
+.icon-gold { background: #fff8e1; color: #f57f17; }
+.icon-teal { background: #e0f2f1; color: #00695c; }
+.icon-pink { background: #fce4ec; color: #ad1457; }
+
+/* ===== EVENTS ===== */
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.event-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+}
+.event-item:hover {
+  box-shadow: var(--card-hover);
+  transform: translateX(-4px);
+}
+.event-date-box {
+  min-width: 70px;
+  text-align: center;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 12px;
+  padding: 12px 8px;
+  flex-shrink: 0;
+}
+.event-date-box .day { font-size: 1.8rem; font-weight: 800; line-height: 1; }
+.event-date-box .month { font-size: 0.75rem; font-weight: 500; }
+.event-info h4 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+.event-info p { font-size: 0.85rem; color: var(--text-light); margin: 0; }
+.event-info .event-meta {
+  display: flex;
+  gap: 16px;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+.event-info .event-meta span { display: flex; align-items: center; gap: 4px; }
+.event-add-cal {
+  margin-right: auto;
+  background: none;
+  border: 1px solid var(--primary-light);
+  color: var(--primary);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-family: 'Heebo';
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+.event-add-cal:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* ===== HOUSING / DEVELOPMENT ===== */
+.project-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+.project-card {
+  background: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+}
+.project-card:hover {
+  box-shadow: var(--card-hover);
+  transform: translateY(-4px);
+}
+.project-card-img {
+  height: 180px;
+  background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 3rem;
+}
+.project-card-body {
+  padding: 20px;
+}
+.project-card-body h4 { font-weight: 700; margin-bottom: 8px; }
+.project-card-body p { font-size: 0.9rem; color: var(--text-light); }
+.project-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-top: 8px;
+}
+.status-active { background: #e8f5e9; color: #2e7d32; }
+.status-planned { background: #fff3e0; color: #e65100; }
+.status-done { background: #e3f2fd; color: #1565c0; }
+
+/* ===== EDUCATION ===== */
+.edu-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+.edu-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+  border-right: 4px solid var(--primary);
+}
+.edu-card:hover {
+  box-shadow: var(--card-hover);
+  transform: translateY(-4px);
+}
+.edu-card .bi { font-size: 2rem; color: var(--primary); margin-bottom: 12px; }
+.edu-card h4 { font-weight: 700; margin-bottom: 8px; }
+.edu-card p { font-size: 0.88rem; color: var(--text-light); }
+
+/* ===== SECURITY ===== */
+.security-banner {
+  background: linear-gradient(135deg, #c62828, #e53935);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+.security-banner .bi { font-size: 3rem; flex-shrink: 0; }
+.security-banner h3 { font-weight: 800; margin-bottom: 4px; }
+.security-banner p { opacity: 0.9; margin: 0; }
+.security-banner .btn-emergency {
+  background: #fff;
+  color: #c62828;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-family: 'Heebo';
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-right: auto;
+  white-space: nowrap;
+  transition: var(--transition);
+}
+.security-banner .btn-emergency:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.security-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+.security-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--card-shadow);
+  text-align: center;
+  transition: var(--transition);
+}
+.security-card:hover { box-shadow: var(--card-hover); }
+.security-card .bi { font-size: 2.5rem; color: var(--danger); margin-bottom: 10px; }
+.security-card h4 { font-weight: 700; margin-bottom: 6px; }
+
+/* ===== MARKETPLACE ===== */
+.marketplace-tabs {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  padding: 8px 22px;
+  border: 2px solid var(--primary-light);
+  background: #fff;
+  color: var(--primary);
+  border-radius: 50px;
+  font-family: 'Heebo';
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.tab-btn:hover, .tab-btn.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+.marketplace-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+.market-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+}
+.market-card:hover { box-shadow: var(--card-hover); }
+.market-card .price { font-size: 1.3rem; font-weight: 800; color: var(--primary); }
+.market-card h4 { font-weight: 700; margin: 8px 0 4px; }
+.market-card p { font-size: 0.85rem; color: var(--text-light); }
+.market-card .seller { font-size: 0.8rem; color: var(--accent); font-weight: 600; margin-top: 8px; }
+
+/* ===== CONTACT FORM ===== */
+.contact-section {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: #fff;
+}
+.contact-section .section-header h2 { color: #fff; }
+.contact-section .section-header p { color: rgba(255,255,255,0.8); }
+.contact-section .section-line { background: linear-gradient(90deg, var(--accent), var(--accent-light)); }
+.contact-form {
+  max-width: 700px;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius);
+  padding: 36px;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.contact-form .form-label { color: rgba(255,255,255,0.9); font-weight: 500; }
+.contact-form .form-control,
+.contact-form .form-select {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-family: 'Heebo';
+}
+.contact-form .form-control::placeholder { color: rgba(255,255,255,0.5); }
+.contact-form .form-control:focus,
+.contact-form .form-select:focus {
+  background: rgba(255,255,255,0.18);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(200,150,12,0.2);
+  color: #fff;
+}
+.contact-form .form-select option { color: var(--text); background: #fff; }
+.btn-submit {
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  color: var(--primary-dark);
+  border: none;
+  padding: 14px 40px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  font-family: 'Heebo';
+  cursor: pointer;
+  transition: var(--transition);
+  width: 100%;
+}
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(200,150,12,0.4);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--primary-dark);
+  color: rgba(255,255,255,0.85);
+  padding: 60px 0 30px;
+}
+.footer h5 { color: #fff; font-weight: 700; margin-bottom: 16px; }
+.footer a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: var(--transition);
+}
+.footer a:hover { color: var(--accent-light); }
+.footer-links { list-style: none; padding: 0; }
+.footer-links li { margin-bottom: 8px; }
+.footer-links li a { font-size: 0.9rem; display: flex; align-items: center; gap: 6px; }
+.footer-contact { list-style: none; padding: 0; }
+.footer-contact li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+.footer-contact .bi { color: var(--accent-light); font-size: 1.1rem; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 20px;
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ===== RESIDENTS AREA ===== */
+.residents-gate {
+  max-width: 450px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 40px;
+  box-shadow: var(--card-hover);
+  text-align: center;
+}
+.residents-gate .bi-lock-fill { font-size: 3rem; color: var(--primary); margin-bottom: 16px; }
+.residents-gate h3 { font-weight: 800; margin-bottom: 8px; }
+.residents-gate p { color: var(--text-light); margin-bottom: 20px; }
+.residents-gate input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-family: 'Heebo';
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 14px;
+  outline: none;
+  transition: var(--transition);
+}
+.residents-gate input:focus { border-color: var(--primary); }
+.residents-gate .btn-login {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 12px 36px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-family: 'Heebo';
+  cursor: pointer;
+  transition: var(--transition);
+  width: 100%;
+}
+.residents-gate .btn-login:hover { background: var(--primary-dark); }
+
+/* ===== ABOUT ===== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.about-text h3 { font-weight: 800; font-size: 1.8rem; color: var(--primary-dark); margin-bottom: 16px; }
+.about-text p { color: var(--text-light); line-height: 1.8; margin-bottom: 12px; }
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+.stat-box {
+  text-align: center;
+  padding: 16px;
+  background: var(--sky);
+  border-radius: 12px;
+}
+.stat-box .num { font-size: 2rem; font-weight: 900; color: var(--primary); }
+.stat-box .label { font-size: 0.8rem; color: var(--text-light); }
+.about-visual {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--card-hover);
+  height: 400px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 5rem;
+}
+
+/* ===== SCROLL ANIMATIONS ===== */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== BACK TO TOP ===== */
+.back-to-top {
+  position: fixed;
+  left: 20px;
+  bottom: 200px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  transition: var(--transition);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1040;
+}
+.back-to-top.show { opacity: 1; visibility: visible; }
+.back-to-top:hover { background: var(--primary-dark); transform: translateY(-3px); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 991px) {
+  .mobile-toggle { display: block; }
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    background: #fff;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-top: 1px solid #eee;
+  }
+  .nav-menu.open { display: flex; }
+  .nav-menu > li > a { padding: 14px 24px; border-bottom: 1px solid #f0f0f0; }
+  .dropdown-mega {
+    position: static;
+    box-shadow: none;
+    border-radius: 0;
+    border-top: none;
+    background: var(--sand);
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    display: none;
+  }
+  .nav-menu > li.open .dropdown-mega { display: block; }
+  .hero-content h1 { font-size: 2.2rem; }
+  .hero-content .tagline { font-size: 1rem; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-visual { height: 250px; }
+  .security-banner { flex-direction: column; text-align: center; }
+  .security-banner .btn-emergency { margin: 12px auto 0; }
+  .event-item { flex-direction: column; text-align: center; }
+  .event-add-cal { margin: 10px auto 0; }
+}
+@media (max-width: 576px) {
+  .hero { min-height: 70vh; }
+  .hero-content h1 { font-size: 1.8rem; }
+  .news-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-stats { grid-template-columns: repeat(3, 1fr); }
+  .stat-box .num { font-size: 1.4rem; }
+  .floating-widgets { left: 12px; bottom: 12px; }
+  .float-btn { width: 48px; height: 48px; font-size: 1.2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar-main" id="navbar">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="#" class="navbar-brand-area text-decoration-none">
+        <div class="logo-circle">מ"ע</div>
+        <div class="brand-text">
+          <div class="title">מעלה עמוס</div>
+          <div class="subtitle">תורה · קהילה · ישוב הדעת</div>
+        </div>
+      </a>
+      <button class="mobile-toggle" onclick="toggleMenu()">
+        <i class="bi bi-list"></i>
+      </button>
+      <ul class="nav-menu" id="navMenu">
+        <li>
+          <a href="#about">הישוב <i class="bi bi-chevron-down"></i></a>
+          <div class="dropdown-mega">
+            <a href="#about"><i class="bi bi-info-circle"></i> אודות</a>
+            <a href="#about"><i class="bi bi-diagram-3"></i> מבנה ארגוני</a>
+            <a href="#about"><i class="bi bi-people"></i> ועד מקומי</a>
+            <a href="#about"><i class="bi bi-telephone"></i> קשר ישיר</a>
+            <a href="#about"><i class="bi bi-building"></i> אשכולות ומחלקות</a>
+            <a href="#about"><i class="bi bi-gear"></i> שרותי מועצה</a>
+          </div>
+        </li>
+        <li>
+          <a href="#housing">דיור <i class="bi bi-chevron-down"></i></a>
+          <div class="dropdown-mega">
+            <a href="#housing"><i class="bi bi-house-door"></i> שכונות</a>
+            <a href="#housing"><i class="bi bi-building-add"></i> פרויקטים בבנייה</a>
+            <a href="#housing"><i class="bi bi-graph-up"></i> אוכלוסיה</a>
+            <a href="#housing"><i class="bi bi-wrench"></i> בנייה ותקלות</a>
+          </div>
+        </li>
+        <li>
+          <a href="#marketplace">עסקים <i class="bi bi-chevron-down"></i></a>
+          <div class="dropdown-mega">
+            <a href="#marketplace"><i class="bi bi-cart"></i> קניות</a>
+            <a href="#marketplace"><i class="bi bi-cup-hot"></i> פנאי ונופש</a>
+            <a href="#marketplace"><i class="bi bi-person-badge"></i> נותני שירות</a>
+            <a href="#marketplace"><i class="bi bi-geo-alt"></i> תיירות</a>
+          </div>
+        </li>
+        <li>
+          <a href="#news">חדשות ועדכונים <i class="bi bi-chevron-down"></i></a>
+          <div class="dropdown-mega">
+            <a href="#news"><i class="bi bi-newspaper"></i> חדשות</a>
+            <a href="#news"><i class="bi bi-megaphone"></i> עדכונים שוטפים</a>
+            <a href="#news"><i class="bi bi-envelope-paper"></i> הודעות לתושבים</a>
+            <a href="#security"><i class="bi bi-exclamation-triangle"></i> חירום</a>
+          </div>
+        </li>
+        <li>
+          <a href="#contact">פנייה מקוונת</a>
+        </li>
+        <li>
+          <a href="#community">קהילה <i class="bi bi-chevron-down"></i></a>
+          <div class="dropdown-mega">
+            <a href="#events"><i class="bi bi-calendar-event"></i> אירועים</a>
+            <a href="#community"><i class="bi bi-chat-dots"></i> ועדים</a>
+            <a href="#education"><i class="bi bi-book"></i> חינוך</a>
+            <a href="#community"><i class="bi bi-emoji-smile"></i> שמחות</a>
+          </div>
+        </li>
+        <li>
+          <a href="#residents"><i class="bi bi-lock"></i> תושבים</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero-slides">
+    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=1600&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1558981359-219d6364c9c8?w=1600&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1591978345818-e65e5e13e0dc?w=1600&q=80')"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>ברוכים הבאים למעלה עמוס</h1>
+    <p class="tagline">תורה · קהילה · ישוב הדעת</p>
+    <div class="hero-search">
+      <i class="bi bi-search"></i>
+      <input type="text" placeholder="חיפוש באתר..." id="siteSearch">
+    </div>
+    <div class="hero-quick-links">
+      <a href="#contact"><i class="bi bi-envelope"></i> פנייה מקוונת</a>
+      <a href="#events"><i class="bi bi-calendar3"></i> לוח אירועים</a>
+      <a href="#security"><i class="bi bi-shield-check"></i> ביטחון</a>
+      <a href="#marketplace"><i class="bi bi-shop"></i> עסקים מקומיים</a>
+    </div>
+  </div>
+  <div class="scroll-down"><i class="bi bi-chevron-double-down"></i></div>
+</section>
+
+<!-- ===== FLOATING WIDGETS ===== -->
+<div class="floating-widgets">
+  <button class="float-btn emergency" onclick="alert('חייגו 106 לדיווח חירום')">
+    <i class="bi bi-telephone-fill"></i>
+    <span class="tooltip-text">מוקד 106</span>
+  </button>
+  <button class="float-btn report" onclick="document.getElementById('security').scrollIntoView({behavior:'smooth'})">
+    <i class="bi bi-exclamation-triangle-fill"></i>
+    <span class="tooltip-text">דיווח מפגע ביטחוני</span>
+  </button>
+  <button class="float-btn phone" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+    <i class="bi bi-chat-dots-fill"></i>
+    <span class="tooltip-text">צור קשר</span>
+  </button>
+</div>
+
+<!-- ===== BACK TO TOP ===== -->
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="bi bi-arrow-up"></i>
+</button>
+
+<!-- ===== NEWS - מה קורה בישוב ===== -->
+<section class="section" id="news">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2><i class="bi bi-newspaper"></i> מה קורה בישוב</h2>
+      <div class="section-line"></div>
+      <p>חדשות, עדכונים והודעות חשובות לתושבי מעלה עמוס</p>
+    </div>
+    <div class="news-grid fade-up" id="newsGrid">
+      <!-- Populated by JS -->
+    </div>
+    <div class="text-center mt-4 fade-up">
+      <button class="tab-btn" onclick="loadMoreNews()">הצג עוד חדשות <i class="bi bi-arrow-down"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2><i class="bi bi-info-circle"></i> אודות הישוב</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid fade-up">
+      <div class="about-text">
+        <h3>מעלה עמוס — קהילה של תורה וחיים</h3>
+        <p>מעלה עמוס הוא ישוב קהילתי-דתי השוכן בגוש עציון, הר חברון. הישוב הוקם בשנת 1981 ומאז צמח לקהילה תוססת ומגוונת המשלבת לימוד תורה ברמה גבוהה עם חיי קהילה עשירים.</p>
+        <p>הישוב מונה מאות משפחות החיות בשכנות טובה, עם מוסדות חינוך מצוינים, בתי כנסת, מרכז קהילתי ופעילויות מגוונות לכל הגילאים.</p>
+        <div class="about-stats">
+          <div class="stat-box">
+            <div class="num">450+</div>
+            <div class="label">משפחות</div>
+          </div>
+          <div class="stat-box">
+            <div class="num">1981</div>
+            <div class="label">שנת הקמה</div>
+          </div>
+          <div class="stat-box">
+            <div class="num">2,500+</div>
+            <div class="label">תושבים</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual">
+        <i class="bi bi-houses"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2><i class="bi bi-grid"></i> שירותים מהירים</h2>
+      <div class="section-line"></div>
+      <p>גישה מהירה לכל השירותים שאתם צריכים</p>
+    </div>
+    <div class="services-grid fade-up">
+      <a href="#contact" class="service-card">
+        <div class="icon icon-green"><i class="bi bi-envelope-paper"></i></div>
+        <h4>פנייה מקוונת</h4>
+        <p>שליחת פנייה למזכירות</p>
+      </a>
+      <a href="#security" class="service-card">
+        <div class="icon icon-red"><i class="bi bi-shield-exclamation"></i></div>
+        <h4>ביטחון</h4>
+        <p>דיווח מפגע או חירום</p>
+      </a>
+      <a href="#housing" class="service-card">
+        <div class="icon icon-blue"><i class="bi bi-house-door"></i></div>
+        <h4>דיור ובנייה</h4>
+        <p>פרויקטים ושכונות</p>
+      </a>
+      <a href="#education" class="service-card">
+        <div class="icon icon-purple"><i class="bi bi-mortarboard"></i></div>
+        <h4>חינוך</h4>
+        <p>מוסדות חינוך וגני ילדים</p>
+      </a>
+      <a href="#events" class="service-card">
+        <div class="icon icon-orange"><i class="bi bi-calendar-event"></i></div>
+        <h4>אירועים</h4>
+        <p>לוח אירועים קהילתי</p>
+      </a>
+      <a href="#marketplace" class="service-card">
+        <div class="icon icon-gold"><i class="bi bi-shop"></i></div>
+        <h4>עסקים מקומיים</h4>
+        <p>מודעות ושירותים</p>
+      </a>
+      <a href="#news" class="service-card">
+        <div class="icon icon-teal"><i class="bi bi-megaphone"></i></div>
+        <h4>עדכונים</h4>
+        <p>חדשות ועדכונים שוטפים</p>
+      </a>
+      <a href="#residents" class="service-card">
+        <div class="icon icon-pink"><i class="bi bi-person-badge"></i></div>
+        <h4>אזור תושבים</h4>
+        <p>גבייה, תשלומים ופניות</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EVENTS ===== -->
+<section class="section" id="events">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2><i class="bi bi-calendar3"></i> לוח אירועים</h2>
+      <div class="section-line"></div>
+      <p>אירועים קרובים בישוב</p>
+    </div>
+    <div class="events-list fade-up" id="eventsList">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOUSING & DEVELOPMENT ===== -->
+<section class="section" id="housing">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2><i class="bi bi-building-add"></i> דיור ופיתוח</h2>
+      <div class="section-line"></div>
+      <p>פרויקטי בנייה ופיתוח בישוב</p>
+    </div>
+    <div class="project-cards fade-up">
+      <div class="project-card">
+        <div class="project-card-img"><i class="bi bi-houses"></i></div>
+        <div class="project-card-body">
+          <h4>שכונה חדשה — צפון</h4>
+          <p>פרויקט הרחבה הכולל 120 יחידות דיור חדשות בחלק הצפוני של הישוב. תכנון ירוק עם שטחים ציבוריים.</p>
+          <span class="project-status status-active"><i class="bi bi-circle-fill" style="font-size:0.5rem"></i> בביצוע</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-img" style="background:linear-gradient(135deg,#1565c0,#42a5f5)"><i class="bi bi-building"></i></div>
+        <div class="project-card-body">
+          <h4>מרכז מסחרי חדש</h4>
+          <p>מרכז מסחרי ושירותים עם חנויות, מרפאה ומשרדים. ממוקם במרכז הישוב.</p>
+          <span class="project-status status-planned"><i class="bi bi-circle-fill" style="font-size:0.5rem"></i> בתכנון</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-img" style="background:linear-gradient(135deg,#2e7d32,#66bb6a)"><i class="bi bi-tree"></i></div>
+        <div class="project-card-body">
+          <h4>פארק קהילתי</h4>
+          <p>פארק עם מתקני משחק, מסלולי הליכה, שטחי ישיבה מוצלים וגינה קהילתית.</p>
+          <span class="project-status status-done"><i class="bi bi-circle-fill" style="font-size:0.5rem"></i> הושלם</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EDUCATION ===== -->
+<section class="section" id="education">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2><i class="bi bi-mortarboard"></i> חינוך</h2>
+      <div class="section-line"></div>
+      <p>מוסדות חינוך ולימוד בישוב</p>
+    </div>
+    <div class="edu-cards fade-up">
+      <div class="edu-card">
+        <i class="bi bi-book"></i>
+        <h4>ישיבה תיכונית</h4>
+        <p>ישיבה תיכונית עם מסלול לימודים משולב — תורה ומדעים ברמה גבוהה.</p>
+      </div>
+      <div class="edu-card">
+        <i class="bi bi-backpack"></i>
+        <h4>בית ספר יסודי</h4>
+        <p>בית ספר ממלכתי-דתי עם 6 שכבות גיל, צוות מסור וסביבה חינוכית מעולה.</p>
+      </div>
+      <div class="edu-card">
+        <i class="bi bi-flower1"></i>
+        <h4>גני ילדים</h4>
+        <p>5 גנים ברחבי הישוב לגילאי 3-6, עם צוות מקצועי וחצרות מרווחות.</p>
+      </div>
+      <div class="edu-card">
+        <i class="bi bi-people"></i>
+        <h4>אולפנה</h4>
+        <p>אולפנה לבנות עם תכנית לימודים עשירה, הישגים אקדמיים ופעילות חברתית.</p>
+      </div>
+      <div class="edu-card">
+        <i class="bi bi-journal-richtext"></i>
+        <h4>כולל ובית מדרש</h4>
+        <p>כולל לאברכים ובית מדרש פתוח ללימוד תורה לכל הגילאים.</p>
+      </div>
+      <div class="edu-card">
+        <i class="bi bi-palette"></i>
+        <h4>חוגים והעשרה</h4>
+        <p>מגוון חוגים: אומנות, מוזיקה, ספורט, אפייה ועוד — לילדים ולמבוגרים.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMMUNITY ===== -->
+<section class="section" id="community">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2><i class="bi bi-people"></i> חיי קהילה</h2>
+      <div class="section-line"></div>
+      <p>ועדים, שמחות וחיים קהילתיים תוססים</p>
+    </div>
+    <div class="services-grid fade-up">
+      <div class="service-card">
+        <div class="icon icon-gold"><i class="bi bi-stars"></i></div>
+        <h4>שמחות</h4>
+        <p>מזל טוב ואירועים משמחים</p>
+      </div>
+      <div class="service-card">
+        <div class="icon icon-green"><i class="bi bi-people-fill"></i></div>
+        <h4>ועדים</h4>
+        <p>ועדי שכונות ונושאים</p>
+      </div>
+      <div class="service-card">
+        <div class="icon icon-blue"><i class="bi bi-chat-square-heart"></i></div>
+        <h4>חסד וגמ"חים</h4>
+        <p>רשת חסד קהילתית</p>
+      </div>
+      <div class="service-card">
+        <div class="icon icon-purple"><i class="bi bi-music-note-beamed"></i></div>
+        <h4>תרבות ופנאי</h4>
+        <p>הופעות, הרצאות ופעילויות</p>
+      </div>
+      <div class="service-card">
+        <div class="icon icon-orange"><i class="bi bi-bicycle"></i></div>
+        <h4>ספורט</h4>
+        <p>קבוצות ומגרשים</p>
+      </div>
+      <div class="service-card">
+        <div class="icon icon-teal"><i class="bi bi-tree"></i></div>
+        <h4>טבע וטיולים</h4>
+        <p>מסלולים ופעילויות בטבע</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECURITY ===== -->
+<section class="section" id="security">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2><i class="bi bi-shield-check"></i> ביטחון</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="fade-up">
+      <div class="security-banner">
+        <i class="bi bi-exclamation-triangle-fill"></i>
+        <div>
+          <h3>מצב חירום? התקשרו מיד!</h3>
+          <p>במקרה חירום ביטחוני חייגו למוקד או לרכז הביטחון</p>
+        </div>
+        <button class="btn-emergency" onclick="alert('חייגו 106')"><i class="bi bi-telephone-fill"></i> מוקד 106</button>
+      </div>
+    </div>
+    <div class="security-cards fade-up">
+      <div class="security-card">
+        <i class="bi bi-telephone-outbound"></i>
+        <h4>קו חירום</h4>
+        <p>מוקד 106 — זמין 24/7 לכל דיווח ביטחוני</p>
+      </div>
+      <div class="security-card">
+        <i class="bi bi-person-badge"></i>
+        <h4>רכז ביטחון</h4>
+        <p>דניאל — ניתן לפנות בכל עת בנושאי ביטחון שוטף</p>
+      </div>
+      <div class="security-card">
+        <i class="bi bi-exclamation-diamond"></i>
+        <h4>דיווח מפגע</h4>
+        <p>ראיתם משהו חשוד? דווחו מיד דרך הטופס או בטלפון</p>
+      </div>
+      <div class="security-card">
+        <i class="bi bi-file-earmark-text"></i>
+        <h4>הנחיות חירום</h4>
+        <p>נוהלי חירום, מיקום מקלטים ונקודות כינוס</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MARKETPLACE ===== -->
+<section class="section" id="marketplace">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2><i class="bi bi-shop"></i> לוח שירותים ומסחר</h2>
+      <div class="section-line"></div>
+      <p>עסקים מקומיים, שירותים ומודעות</p>
+    </div>
+    <div class="marketplace-tabs fade-up">
+      <button class="tab-btn active" onclick="filterMarket('all',this)">הכל</button>
+      <button class="tab-btn" onclick="filterMarket('services',this)">נותני שירות</button>
+      <button class="tab-btn" onclick="filterMarket('sale',this)">למכירה</button>
+      <button class="tab-btn" onclick="filterMarket('rent',this)">להשכרה</button>
+      <button class="tab-btn" onclick="filterMarket('jobs',this)">דרושים</button>
+      <button class="tab-btn" onclick="filterMarket('secondhand',this)">יד שנייה</button>
+    </div>
+    <div class="marketplace-grid fade-up" id="marketGrid">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="section contact-section" id="contact">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2><i class="bi bi-envelope-paper"></i> פנייה מקוונת</h2>
+      <div class="section-line"></div>
+      <p>שלחו פנייה למזכירות הישוב ונחזור אליכם בהקדם</p>
+    </div>
+    <form class="contact-form fade-up" onsubmit="submitContact(event)">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">שם מלא</label>
+          <input type="text" class="form-control" placeholder="ישראל ישראלי" required>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">טלפון</label>
+          <input type="tel" class="form-control" placeholder="050-1234567" required>
+        </div>
+        <div class="col-12">
+          <label class="form-label">דוא"ל</label>
+          <input type="email" class="form-control" placeholder="email@example.com">
+        </div>
+        <div class="col-12">
+          <label class="form-label">נושא הפנייה</label>
+          <select class="form-select" required>
+            <option value="">בחרו נושא...</option>
+            <option>תחזוקה ותשתיות</option>
+            <option>דיור ובנייה</option>
+            <option>ביטחון</option>
+            <option>חינוך</option>
+            <option>קהילה ואירועים</option>
+            <option>גבייה ותשלומים</option>
+            <option>אחר</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label class="form-label">תוכן הפנייה</label>
+          <textarea class="form-control" rows="5" placeholder="פרטו את פנייתכם..." required></textarea>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn-submit">
+            <i class="bi bi-send"></i> שליחת פנייה
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ===== RESIDENTS ===== -->
+<section class="section" id="residents">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2><i class="bi bi-lock"></i> אזור תושבים</h2>
+      <div class="section-line"></div>
+      <p>אזור אישי לתושבי מעלה עמוס — גבייה, תשלומים ופניות</p>
+    </div>
+    <div class="residents-gate fade-up">
+      <i class="bi bi-lock-fill"></i>
+      <h3>כניסה לאזור האישי</h3>
+      <p>הזינו את מספר הזהות והסיסמה שקיבלתם</p>
+      <input type="text" placeholder="מספר זהות" id="residentId">
+      <input type="password" placeholder="סיסמה" id="residentPass">
+      <button class="btn-login" onclick="residentLogin()">כניסה <i class="bi bi-box-arrow-in-left"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <div class="logo-circle">מ"ע</div>
+          <div>
+            <div style="font-weight:800; font-size:1.2rem; color:#fff">מעלה עמוס</div>
+            <div style="font-size:0.8rem; opacity:0.7">תורה · קהילה · ישוב הדעת</div>
+          </div>
+        </div>
+        <p style="font-size:0.9rem; opacity:0.8; line-height:1.8">
+          ישוב קהילתי-דתי בגוש עציון, הר חברון. קהילה חמה ותוססת של משפחות המשלבות תורה עם חיי מעשה.
+        </p>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5>ניווט מהיר</h5>
+        <ul class="footer-links">
+          <li><a href="#about"><i class="bi bi-chevron-left"></i> אודות</a></li>
+          <li><a href="#news"><i class="bi bi-chevron-left"></i> חדשות</a></li>
+          <li><a href="#events"><i class="bi bi-chevron-left"></i> אירועים</a></li>
+          <li><a href="#housing"><i class="bi bi-chevron-left"></i> דיור</a></li>
+          <li><a href="#education"><i class="bi bi-chevron-left"></i> חינוך</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5>שירותים</h5>
+        <ul class="footer-links">
+          <li><a href="#contact"><i class="bi bi-chevron-left"></i> פנייה מקוונת</a></li>
+          <li><a href="#marketplace"><i class="bi bi-chevron-left"></i> לוח מודעות</a></li>
+          <li><a href="#security"><i class="bi bi-chevron-left"></i> ביטחון</a></li>
+          <li><a href="#residents"><i class="bi bi-chevron-left"></i> אזור תושבים</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h5>צור קשר</h5>
+        <ul class="footer-contact">
+          <li><i class="bi bi-geo-alt-fill"></i> מעלה עמוס, גוש עציון, ישראל</li>
+          <li><i class="bi bi-telephone-fill"></i> 02-996-XXXX</li>
+          <li><i class="bi bi-envelope-fill"></i> info@maaleamos.org.il</li>
+          <li><i class="bi bi-clock-fill"></i> א'-ה' 08:00-16:00</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 מעלה עמוס — כל הזכויות שמורות | נבנה באהבה לקהילה</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===== DATA =====
+const NEWS_DATA = [
+  {
+    title: 'הרחבת שכונה צפונית — אושרה תכנית בנייה חדשה',
+    desc: 'ועדת התכנון אישרה את תכנית ההרחבה הכוללת 120 יחידות דיור חדשות. הבנייה צפויה להתחיל בקרוב.',
+    date: '24 באפריל 2026',
+    cat: 'דיור',
+    img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80'
+  },
+  {
+    title: 'יום הזיכרון — טקס אזכרה ביישוב',
+    desc: 'טקס יום הזיכרון ייערך ביום שני בגן הזיכרון בשעה 19:30. כל התושבים מוזמנים.',
+    date: '22 באפריל 2026',
+    cat: 'קהילה',
+    img: 'https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=600&q=80'
+  },
+  {
+    title: 'פתיחת הרשמה לגני הילדים — תשפ"ז',
+    desc: 'ההרשמה לגנים לשנת תשפ"ז נפתחה. ניתן להירשם באתר או במזכירות עד ה-15 במאי.',
+    date: '20 באפריל 2026',
+    cat: 'חינוך',
+    img: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&q=80'
+  },
+  {
+    title: 'שיפוץ מקיף במקלט המרכזי',
+    desc: 'עבודות שיפוץ ושדרוג המקלט המרכזי של הישוב. העבודות צפויות להימשך כחודשיים.',
+    date: '18 באפריל 2026',
+    cat: 'ביטחון',
+    img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80'
+  },
+  {
+    title: 'פסטיבל אביב — מוזיקה ואוכל בגן הישוב',
+    desc: 'פסטיבל אביב שנתי עם הופעות מוזיקליות, דוכני אוכל, פעילויות לילדים ואווירה חגיגית.',
+    date: '15 באפריל 2026',
+    cat: 'קהילה',
+    img: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&q=80'
+  },
+  {
+    title: 'קו אוטובוס חדש 167 — מעלה עמוס לירושלים',
+    desc: 'החל מחודש מאי יופעל קו ישיר חדש לירושלים עם תדירות מוגברת בשעות השיא.',
+    date: '12 באפריל 2026',
+    cat: 'עדכונים',
+    img: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=600&q=80'
+  }
+];
+
+const EVENTS_DATA = [
+  { day: '28', month: 'אפריל', title: 'שיעור הרב — פרשת השבוע', desc: 'שיעור שבועי עם הרב בבית הכנסת המרכזי', time: '20:00', location: 'בית כנסת מרכזי' },
+  { day: '30', month: 'אפריל', title: 'ערב הורים — בית ספר יסודי', desc: 'מפגש הורים-מורים לסיכום השליש השני', time: '19:30', location: 'בית הספר' },
+  { day: '2', month: 'מאי', title: 'שוק איכרים — יום שישי', desc: 'שוק שבועי עם תוצרת מקומית, לחם טרי ומוצרים אורגניים', time: '08:00-13:00', location: 'כיכר הישוב' },
+  { day: '5', month: 'מאי', title: 'הרצאה: חינוך ילדים בעידן הדיגיטלי', desc: 'הרצאה מרתקת לקהילה בנושא אתגרי החינוך המודרני', time: '20:30', location: 'מרכז קהילתי' },
+  { day: '10', month: 'מאי', title: 'ל"ג בעומר — מדורה קהילתית', desc: 'מדורה ואירוע מרכזי לכל הישוב. הופעות, אוכל ושמחה!', time: '19:00', location: 'מגרש המרכזי' },
+];
+
+const MARKET_DATA = [
+  { title: 'חשמלאי מוסמך', desc: 'עבודות חשמל, תיקונים, התקנות. ניסיון 15 שנה. זמין גם בשבתות לחירום.', price: 'לפי עבודה', cat: 'services', seller: 'אבי כהן' },
+  { title: 'דירת 5 חדרים למכירה', desc: 'דירה מרווחת בשכונה הישנה, משופצת, מרפסת שמש, חניה.', price: '1,850,000 ₪', cat: 'sale', seller: 'משה לוי' },
+  { title: 'צימר להשכרה לשבת', desc: 'יחידת אירוח מפנקת, מאובזרת, מתאימה לזוג + 2 ילדים.', price: '600 ₪/לילה', cat: 'rent', seller: 'רחל שמיר' },
+  { title: 'מורה פרטי למתמטיקה', desc: 'שיעורים פרטיים בכל הרמות — יסודי עד בגרות. ניסיון ותוצאות מוכחות.', price: '120 ₪/שעה', cat: 'services', seller: 'דוד ברקוביץ' },
+  { title: 'עגלת תינוק במצב מעולה', desc: 'עגלת Bugaboo כמעט חדשה, שימוש שנה אחת בלבד. כולל אביזרים.', price: '1,200 ₪', cat: 'secondhand', seller: 'שרה פרידמן' },
+  { title: 'דרושה גננת עוזרת', desc: 'גן דובדבן מחפש עוזרת גננת למשרה מלאה. ניסיון — יתרון.', price: 'שכר מותאם', cat: 'jobs', seller: 'גן דובדבן' },
+  { title: 'שיפוצניק — כל עבודה', desc: 'צביעה, גבס, ריצוף, אינסטלציה. עבודה מקצועית ואמינה.', price: 'הצעת מחיר', cat: 'services', seller: 'יוסי מזרחי' },
+  { title: 'ספה תלת-מושבית', desc: 'ספה נוחה ויפה, צבע אפור, מצב טוב מאוד.', price: '800 ₪', cat: 'secondhand', seller: 'מיכל גולדשטיין' },
+];
+
+// ===== RENDER FUNCTIONS =====
+function renderNews() {
+  const grid = document.getElementById('newsGrid');
+  grid.innerHTML = NEWS_DATA.map(n => `
+    <div class="news-card">
+      <div class="news-card-img" style="background-image:url('${n.img}')">
+        <span class="badge-cat">${n.cat}</span>
+      </div>
+      <div class="news-card-body">
+        <div class="date"><i class="bi bi-calendar3"></i> ${n.date}</div>
+        <h3>${n.title}</h3>
+        <p>${n.desc}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderEvents() {
+  const list = document.getElementById('eventsList');
+  list.innerHTML = EVENTS_DATA.map(e => `
+    <div class="event-item">
+      <div class="event-date-box">
+        <div class="day">${e.day}</div>
+        <div class="month">${e.month}</div>
+      </div>
+      <div class="event-info">
+        <h4>${e.title}</h4>
+        <p>${e.desc}</p>
+        <div class="event-meta">
+          <span><i class="bi bi-clock"></i> ${e.time}</span>
+          <span><i class="bi bi-geo-alt"></i> ${e.location}</span>
+        </div>
+      </div>
+      <button class="event-add-cal" onclick="addToCalendar('${e.title}')">
+        <i class="bi bi-calendar-plus"></i> הוספה ליומן
+      </button>
+    </div>
+  `).join('');
+}
+
+function renderMarket(filter = 'all') {
+  const grid = document.getElementById('marketGrid');
+  const filtered = filter === 'all' ? MARKET_DATA : MARKET_DATA.filter(m => m.cat === filter);
+  grid.innerHTML = filtered.map(m => `
+    <div class="market-card" data-cat="${m.cat}">
+      <div class="price">${m.price}</div>
+      <h4>${m.title}</h4>
+      <p>${m.desc}</p>
+      <div class="seller"><i class="bi bi-person"></i> ${m.seller}</div>
+    </div>
+  `).join('');
+}
+
+// ===== INTERACTIONS =====
+function toggleMenu() {
+  document.getElementById('navMenu').classList.toggle('open');
+}
+
+// Mobile dropdown toggles
+document.querySelectorAll('.nav-menu > li > a').forEach(a => {
+  a.addEventListener('click', function(e) {
+    if (window.innerWidth <= 991 && this.parentElement.querySelector('.dropdown-mega')) {
+      e.preventDefault();
+      this.parentElement.classList.toggle('open');
+    }
+  });
+});
+
+function filterMarket(cat, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderMarket(cat);
+}
+
+function submitContact(e) {
+  e.preventDefault();
+  alert('הפנייה נשלחה בהצלחה! נחזור אליכם בהקדם.');
+  e.target.reset();
+}
+
+function residentLogin() {
+  const id = document.getElementById('residentId').value;
+  const pass = document.getElementById('residentPass').value;
+  if (!id || !pass) { alert('נא למלא את כל השדות'); return; }
+  alert('מערכת אזור התושבים בהקמה. נעדכן כשתהיה זמינה.');
+}
+
+function addToCalendar(title) {
+  alert(`האירוע "${title}" נוסף ליומן!`);
+}
+
+function loadMoreNews() {
+  alert('בקרוב — ארכיון חדשות מלא');
+}
+
+// ===== HERO SLIDESHOW =====
+let currentSlide = 0;
+const slides = document.querySelectorAll('.hero-slide');
+function nextSlide() {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add('active');
+}
+setInterval(nextSlide, 5000);
+
+// ===== SCROLL EFFECTS =====
+const navbar = document.getElementById('navbar');
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+  backToTop.classList.toggle('show', window.scrollY > 500);
+});
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      const offset = 80;
+      window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+      document.getElementById('navMenu').classList.remove('open');
+    }
+  });
+});
+
+// Fade-up on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ===== INIT =====
+renderNews();
+renderEvents();
+renderMarket();
+</script>
+</body>
+</html>
